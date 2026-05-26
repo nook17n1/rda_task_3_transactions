@@ -8,8 +8,7 @@ INSERT INTO Orders (CustomerID, Date)
 -- Start the transaction 
 START TRANSACTION; 
 INSERT INTO OrderItems (OrderID, ProductID, Count)
-    VALUES (1, 1, 0);
-UPDATE OrderItems SET Count = Count + 1 WHERE OrderID = 1;
+    VALUES (LAST_INSERT_ID(), 1, 1);
 UPDATE Products SET WarehouseAmount = WarehouseAmount - 1 where Name = "AwersomeProduct";
 -- And some data should be created inside the transaction 
 
